@@ -1,5 +1,5 @@
 export interface DataType {
-  key: string
+  key?: string
   id: string
   name: string
   quantity: number

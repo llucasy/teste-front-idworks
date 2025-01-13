@@ -4,22 +4,9 @@ import { DataType } from './types/Product'
 import Modal from './components/Modal'
 
 function App() {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<DataType[]>([])
   const [productId, setProductId] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const openModal = (id: string) => {
-    setProductId(id)
-    setIsModalOpen(true)
-  }
-
-  const handleOk = () => {
-    setIsModalOpen(false)
-  }
-
-  const handleCancel = () => {
-    setIsModalOpen(false)
-  }
 
   const fetchProducts = () => {
     fetch('http://localhost:3001/products')
@@ -28,10 +15,19 @@ function App() {
       .then((data) => setProducts(data))
   }
 
-  useEffect(() => {
-    fetchProducts()
-  }, [])
-
+  const handleUpdate = (product: DataType) => {
+    fetch(`http://localhost:3001/products/${product.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then(() => fetchProducts())
+      .catch((error) => console.error(error))
+  }
+  
   const handleDelete = (id: string) => {
     fetch(`http://localhost:3001/products/${id}`, {
       method: 'DELETE',
@@ -40,6 +36,24 @@ function App() {
       .then(() => fetchProducts())
       .catch((error) => console.error(error))
   }
+
+  const openModal = (id: string) => {
+    setProductId(id)
+    setIsModalOpen(true)
+  }
+
+  const handleOk = (product: DataType) => {
+    handleUpdate(product)
+    setIsModalOpen(false)
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false)
+  }
+
+  useEffect(() => {
+    fetchProducts()
+  }, [])
 
   return (
     <div className="App flex h-screen w-screen flex-col items-center justify-center gap-8 bg-zinc-100 px-1 sm:px-8">
