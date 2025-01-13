@@ -34,9 +34,17 @@ export default function DataTable({
       title: 'Ação',
       key: 'action',
       render: (_, record) => (
-        <Space size="middle">
-          <Button onClick={() => onDelete(record.id)} size="small">
-            Deletar
+        <Space className="flex flex-col" size="small">
+          <Button type="primary" size="small">
+            Editar
+          </Button>
+          <Button
+            type="primary"
+            className="bg-red-500 text-white hover:!bg-red-400"
+            onClick={() => onDelete(record.id)}
+            size="small"
+          >
+            Excluir
           </Button>
         </Space>
       ),
