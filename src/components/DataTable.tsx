@@ -5,9 +5,11 @@ import { DataType } from '../types/Product'
 export default function DataTable({
   data,
   onDelete,
+  onEdit,
 }: {
   data: DataType[]
   onDelete: (id: string) => void
+  onEdit: (id: string) => void
 }) {
   const columns: TableProps<DataType>['columns'] = [
     {
@@ -34,9 +36,17 @@ export default function DataTable({
       title: 'Ação',
       key: 'action',
       render: (_, record) => (
-        <Space size="middle">
-          <Button onClick={() => onDelete(record.id)} size="small">
-            Deletar
+        <Space className="flex flex-col" size="small">
+          <Button type="primary" size="small" onClick={() => onEdit(record.id)}>
+            Editar
+          </Button>
+          <Button
+            type="primary"
+            size="small"
+            className="bg-red-500 text-white hover:!bg-red-400"
+            onClick={() => onDelete(record.id)}
+          >
+            Excluir
           </Button>
         </Space>
       ),
