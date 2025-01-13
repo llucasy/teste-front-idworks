@@ -5,3 +5,19 @@
 }
 @tailwind components;
 @tailwind utilities;
+
+.data-table th, .data-table td {
+  @apply border border-gray-300 text-[0.700rem] sm:text-lg !p-1 !text-center;
+}
+
+.data-table tr:nth-child(even) {
+  @apply !bg-zinc-300;
+}
+
+.data-table tr:nth-child(odd) {
+  @apply !bg-zinc-200;
+}
+
+.data-table th {
+  @apply !bg-zinc-300;
+}
