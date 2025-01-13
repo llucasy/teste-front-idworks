@@ -9,19 +9,19 @@ git clone https://github.com/llucasy/teste-front-idworks.git
 Instale as dependências:
 
 ```bash
-npm install
+pnpm install
 ```
 
 Inicie o servidor:
 
 ```bash
-npm run server
+pnpm run server
 ```
 
 Inicie o projeto:
 
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 Acesse o projeto em http://localhost:5173/
