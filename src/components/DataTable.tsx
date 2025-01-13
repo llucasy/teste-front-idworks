@@ -1,4 +1,4 @@
-import { Button, Space, Table } from 'antd'
+import { Button, Popconfirm, Space, Table } from 'antd'
 import type { TableProps } from 'antd'
 import { DataType } from '../types/Product'
 
@@ -40,14 +40,11 @@ export default function DataTable({
           <Button type="primary" size="small" onClick={() => onEdit(record.id)}>
             Editar
           </Button>
-          <Button
-            type="primary"
-            size="small"
-            className="bg-red-500 text-white hover:!bg-red-400"
-            onClick={() => onDelete(record.id)}
-          >
-            Excluir
-          </Button>
+          <Popconfirm title="Tem certeza que deseja excluir?" onConfirm={() => onDelete(record.id)}>
+            <Button type="primary" size="small" className="bg-red-500 text-white hover:!bg-red-400">
+              Excluir
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },
