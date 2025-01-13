@@ -1,15 +1,14 @@
 import { Button, Space, Table } from 'antd'
 import type { TableProps } from 'antd'
+import { DataType } from '../types/Product'
 
-interface DataType {
-  id: string
-  name: string
-  quantity: number
-  location: string
-}
-
-export default function DataTable({ data, onDelete }: { data: DataType[], onDelete: (id: string) => void }) {
-
+export default function DataTable({
+  data,
+  onDelete,
+}: {
+  data: DataType[]
+  onDelete: (id: string) => void
+}) {
   const columns: TableProps<DataType>['columns'] = [
     {
       title: 'ID',

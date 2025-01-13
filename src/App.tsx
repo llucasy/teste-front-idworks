@@ -1,12 +1,6 @@
 import { useEffect, useState } from 'react'
 import DataTable from './components/DataTable'
-
-interface DataType {
-  id: string
-  name: string
-  quantity: number
-  location: string
-}
+import { DataType } from './types/Product'
 
 function App() {
   const [products, setProducts] = useState([])
